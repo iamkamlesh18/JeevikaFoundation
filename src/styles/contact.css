@@ -14,27 +14,27 @@
 
 .contact-card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--spacing-2xl);
-  max-width: 1100px;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: var(--spacing-3xl);
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .contact-card {
   background: linear-gradient(135deg, #ffffff 0%, rgba(251, 248, 241, 0.5) 100%);
   border: 1px solid rgba(183, 144, 75, 0.15);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-2xl);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-3xl);
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: var(--radius-xl);
   height: 100%;
   position: relative;
   transition: all var(--transition-base);
   box-shadow: var(--form-shadow-light);
   text-align: center;
   overflow: hidden;
+  min-height: 280px;
 }
 
 .contact-card::before {
@@ -51,8 +51,9 @@
 
 .contact-card:hover {
   border-color: rgba(183, 144, 75, 0.4);
-  box-shadow: 0 8px 24px rgba(47, 107, 73, 0.12);
-  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(47, 107, 73, 0.2);
+  transform: translateY(-6px) scale(1.02);
+  background: linear-gradient(135deg, #ffffff 0%, rgba(251, 248, 241, 0.7) 100%);
 }
 
 .contact-card:hover::before {
@@ -153,11 +154,11 @@
   border: 1px solid var(--form-border);
   border-radius: var(--radius-xl);
   padding: var(--spacing-4xl);
-  max-width: 700px;
+  max-width: 800px; /* Increased from 700px for more space */
   margin: 0 auto;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .contact-form::before {
@@ -174,16 +175,9 @@
 /* Form Grid Layout */
 .contact-form-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-xl);
+  grid-template-columns: 1fr; /* Single column - email below name */
+  gap: var(--spacing-lg);
   margin-bottom: var(--spacing-2xl);
-  align-items: flex-start;
-}
-
-.contact-form-grid > .form-group:first-child,
-.contact-form-grid > .form-group:nth-child(2) {
-  align-self: flex-start;
-  justify-self: stretch;
 }
 
 /* Form Group */
@@ -204,7 +198,12 @@
 
 .form-group-full {
   grid-column: 1 / -1;
-  margin-top: var(--spacing-lg);
+  margin-top: var(--spacing-xl); /* Increased from spacing-lg to spacing-xl for better separation */
+}
+
+/* Add extra spacing between subject and message fields */
+.form-group-full + .form-group-full {
+  margin-top: var(--spacing-3xl);
 }
 
 /* Labels */
@@ -229,17 +228,21 @@
 .contact-form select,
 .contact-form textarea {
   width: 100%;
-  padding: 12px 16px;
+  padding: 16px 20px; /* More generous padding for full text visibility */
   border: 1.5px solid var(--form-border);
   border-radius: var(--radius-md);
   background: white;
-  font-size: 15px;
+  font-size: 16px;
   font-family: inherit;
   color: var(--text-primary);
   transition: all var(--transition-base);
   outline: none;
-  box-sizing: border-box; /* Ensure consistent box model */
-  min-height: 44px; /* Ensure consistent input height */
+  box-sizing: border-box;
+  min-height: 52px; /* Taller field for better text display */
+  line-height: 1.4;
+  overflow: visible;
+  text-overflow: clip;
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .contact-form input::placeholder,
@@ -258,7 +261,8 @@
 
 .contact-form textarea {
   resize: vertical;
-  min-height: 140px;
+  min-height: 160px;
+  white-space: pre-wrap;
 }
 
 /* Select Styling */
@@ -436,7 +440,12 @@
 
   .contact-form .form-group-full {
     grid-column: 1;
-    margin-top: var(--spacing-lg);
+    margin-top: var(--spacing-xl); /* Consistent with desktop spacing */
+  }
+
+  /* Extra spacing between subject and message on mobile */
+  .contact-form .form-group-full + .form-group-full {
+    margin-top: var(--spacing-2xl);
   }
 
   .contact-card-grid {
@@ -466,6 +475,8 @@
   .contact-form select,
   .contact-form textarea {
     font-size: 16px; /* Prevents zoom on iOS */
+    padding: 16px 18px; /* Consistent padding on mobile */
+    min-height: 52px; /* Consistent height on mobile */
   }
 
   .btn-submit {
