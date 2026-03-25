@@ -49,14 +49,13 @@ label {
 
 /* Form Groups */
 .form-group {
-  margin-bottom: var(--spacing-lg);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
 }
 
 .form-group + .form-group {
-  margin-top: var(--spacing-lg);
+  margin-top: 0; /* Remove top margin since we use gap */
 }
 
 /* Form Row */
